@@ -7,6 +7,7 @@ plugins {
     id("com.google.devtools.ksp")
     //id("org.jetbrains.kotlin.plugin.serialization")
     kotlin("plugin.serialization") version "1.9.20"
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -19,6 +20,8 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("key", "apikey", "4ca77a9b4447acf0dad7dc5908983acc")
 
         ksp {
             arg ("room.schemaLocation", "$projectDir/schemas".toString())
@@ -50,6 +53,7 @@ android {
     buildFeatures {
         compose = true
         dataBinding = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.5"
