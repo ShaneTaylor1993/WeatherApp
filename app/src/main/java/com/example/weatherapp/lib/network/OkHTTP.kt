@@ -1,7 +1,10 @@
 package com.example.weatherapp.lib.network
 
 import com.example.weatherapp.lib.model.WeatherData
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -11,12 +14,12 @@ import javax.inject.Inject
 class OkHTTP @Inject constructor(private val client: OkHttpClient){
 
     private val json = Json {
-        classDiscriminator = "#class"
+        ignoreUnknownKeys = true
         isLenient = true
     }
 
     @Throws(IOException::class)
-    fun get(url: String): Flow<WeatherData> {
+    suspend fun get(url: String): Flow<WeatherData> = withContext(Dispatchers.IO) {
         val request: Request = Request.Builder()
             .url(url)
             .build()
@@ -26,7 +29,9 @@ class OkHTTP @Inject constructor(private val client: OkHttpClient){
             val response = call.execute()
             if (response.isSuccessful) {
                 val body = response.body?.string() ?: ""
-                return json.decodeFromString(body)
+                flow {
+                    emit(json.decodeFromString(body))
+                }
             } else {
                 // Handle unsuccessful response (e.g., log error)
                 throw IOException("Unsuccessful response: ${response.code}")

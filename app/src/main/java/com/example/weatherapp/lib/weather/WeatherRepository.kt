@@ -12,10 +12,9 @@ import javax.inject.Singleton
 class WeatherRepository @Inject constructor(
     private val client: OkHTTP
 ) {
-
-    suspend fun getWeather(): Flow<WeatherData> {
+    suspend fun getWeather(url: String): Flow<WeatherData> {
         return withContext(Dispatchers.IO) {
-            client.get("https://api.openweathermap.org/data/2.5/weather?lat=38.8951&lon=-77.0364&appid=4ca77a9b4447acf0dad7dc5908983acc")
+            client.get(url)
         }
     }
 }

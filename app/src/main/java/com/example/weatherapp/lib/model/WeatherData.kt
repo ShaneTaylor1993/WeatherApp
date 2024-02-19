@@ -24,7 +24,8 @@ data class WeatherData(
 @Serializable
 data class Coord(
     @SerialName("lon") val lon: Double,
-    @SerialName("lat") val lat: Double)
+    @SerialName("lat") val lat: Double
+)
 
 @Serializable
 data class Weather(
@@ -50,7 +51,8 @@ data class Main(
 data class Wind(
     @SerialName("speed:") val speed: Double? = 0.0,
     @SerialName("deg") val deg: Int? = 0,
-    @SerialName("gust") val gust: Double? = 0.0)
+    @SerialName("gust") val gust: Double? = 0.0
+)
 
 @Serializable
 data class Rain(@SerialName("h") val h: Double? = 0.0) // Assuming "h" represents 1 hour rainfall
