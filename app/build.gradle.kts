@@ -21,8 +21,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("key", "apikey", "4ca77a9b4447acf0dad7dc5908983acc")
-
         ksp {
             arg ("room.schemaLocation", "$projectDir/schemas".toString())
         }
