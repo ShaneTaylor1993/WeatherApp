@@ -19,7 +19,7 @@ class WeatherViewModel @Inject constructor(private val repository: WeatherReposi
 
     suspend fun getWeather(cityName: String) {
         viewModelScope.launch {
-            repository.getWeather("https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=4ca77a9b4447acf0dad7dc5908983acc")
+            repository.getWeather("https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=KEY")
         }
     }
 
