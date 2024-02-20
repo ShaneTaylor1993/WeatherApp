@@ -3,6 +3,7 @@ package com.example.weatherapp.lib.network
 import com.example.weatherapp.lib.model.WeatherData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json

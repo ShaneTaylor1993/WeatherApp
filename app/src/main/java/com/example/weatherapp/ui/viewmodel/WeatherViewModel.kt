@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(private val repository: WeatherRepository): ViewModel() {
 
-    val apiKey = BuildConfig.apikey
+    private val apiKey = BuildConfig.apikey
 
     private var _weatherDataState = MutableStateFlow(WeatherData())
     val weatherDataState: StateFlow<WeatherData> = _weatherDataState.asStateFlow()
